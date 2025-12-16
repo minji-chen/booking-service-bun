@@ -87,6 +87,8 @@ curl "http://localhost:3000/slots?date=2025-12-16"
 curl "http://localhost:3000/users"
 
 5. 利用 使用者ID 預約時段
+
+linux 
 curl -X POST "http://localhost:3000/bookings" \
 -H "Content-Type: application/json" \
 -d '{
@@ -96,7 +98,7 @@ curl -X POST "http://localhost:3000/bookings" \
 }'
 
 
-windos使用
+windows
 curl -X POST http://localhost:3000/bookings ^
 -H "Content-Type: application/json" ^
 -d "{\"user_id\": \"f03cf87c-dd99-4cde-968c-ab43d6b53b9b\", \"date\": \"2025-12-16\", \"time\": \"10:00\"}" 
