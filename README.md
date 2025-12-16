@@ -43,6 +43,29 @@ tests 包含單元測試（unit）與整合測試（integration）。
 
 ---
 
+
+## 本地運行
+
+To install dependencies:
+
+```bash
+bun install
+```
+
+To run:
+
+```bash
+bun run index.ts
+```
+
+To test:
+
+```bash
+bun test
+```
+
+
+
 ## Docker 建置與執行
 
 ### 1️⃣ 建立 Dockerfile
@@ -90,10 +113,7 @@ curl -X POST http://localhost:3000/bookings ^
 
 ```
 
-### 測試
-```bash
-bun test
-```
+## 補充
 
 單元測試在 tests/unit/
 
@@ -109,31 +129,5 @@ bun test
 
 使用 transaction 確保不超賣。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# booking-service
-
-To install dependencies:
-
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
 
 This project was created using `bun init` in bun v1.3.4. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
