@@ -55,7 +55,7 @@ bun install
 To run:
 
 ```bash
-bun run index.ts
+bun run start
 ```
 
 To test:
@@ -75,10 +75,10 @@ Bun 服務會在 http://localhost:3000 開放。
 
 ```bash
 1. reset資料
-curl http://localhost:3000/resetAndSeed
+curl "http://localhost:3000/resetAndSeed"
 
 2. 檢查服務健康
-curl http://localhost:3000/health
+curl "http://localhost:3000/health"
 
 3. 查詢可用時段
 curl "http://localhost:3000/slots?date=2025-12-16"
@@ -106,12 +106,17 @@ curl -X POST http://localhost:3000/bookings ^
 
 ## Docker 建置與執行
 
-### 1️⃣ 建立 Dockerfile
+建立 Dockerfile
+
+```bash
 docker build -t my-bun-app .  
+```
 
-### 2️⃣ 運行 docker 服務
+運行 docker 服務
+
+```bash
 docker run -p 3000:3000 my-bun-app
-
+```
 
 ## 資料庫 migration
 
