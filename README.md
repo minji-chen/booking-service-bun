@@ -6,6 +6,8 @@
 ---
 
 ## 專案架構
+
+```text
 src/
 ├─ controllers/       # 路由處理與 request/response
 │   └─ appointmentController.ts
@@ -25,7 +27,9 @@ src/
 │   └─ integration/
 ├─ db.ts              # DB 連線設定
 └─ server.ts          # Bun 啟動程式入口
+```
 
+---
 
 簡單說明：
 
