@@ -77,8 +77,6 @@ Bun 服務會在 http://localhost:3000 開放。
 1. reset資料
 curl http://localhost:3000/resetAndSeed
 
-
-
 2. 檢查服務健康
 curl http://localhost:3000/health
 
@@ -106,10 +104,6 @@ curl -X POST http://localhost:3000/bookings ^
 ```
 
 
-
-
-
-
 ## Docker 建置與執行
 
 ### 1️⃣ 建立 Dockerfile
@@ -119,13 +113,27 @@ docker build -t my-bun-app .
 docker run -p 3000:3000 my-bun-app
 
 
+## 資料庫 migration
+
+create migration template 
+
+```bash
+bun run drizzle-kit generate
+```
+push template to Neon
+
+```bash
+bun run drizzle-kit push
+```
+
+
 ## 補充
+
+測試會自動建立/重置測試資料 
 
 單元測試在 tests/unit/
 
 整合測試在 tests/integration/
-
-測試會自動建立/重置測試資料
 
 注意事項
 
