@@ -57,22 +57,23 @@ Bun 服務會在 http://localhost:3000 開放。
 
 資料庫使用 PostgreSQL 並用線上服務 Neon 
 
+```text
 使用方式
 
-reset資料
+1. reset資料
 curl http://localhost:3000/resetAndSeed
 
 
-1. 檢查服務健康
+2. 檢查服務健康
 curl http://localhost:3000/health
 
-2. 查詢可用時段
+3. 查詢可用時段
 curl "http://localhost:3000/slots?date=2025-12-16"
 
-3. 查詢使用者
+4. 查詢使用者
 curl "http://localhost:3000/users"
 
-4. 利用 使用者ID 預約時段
+5. 利用 使用者ID 預約時段
 curl -X POST "http://localhost:3000/bookings" \
 -H "Content-Type: application/json" \
 -d '{
@@ -87,7 +88,7 @@ curl -X POST http://localhost:3000/bookings ^
 -H "Content-Type: application/json" ^
 -d "{\"user_id\": \"f03cf87c-dd99-4cde-968c-ab43d6b53b9b\", \"date\": \"2025-12-16\", \"time\": \"10:00\"}" 
 
-
+```
 
 ### 測試
 ```bash
