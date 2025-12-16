@@ -26,7 +26,7 @@ src/
 │   ├─ unit/
 │   └─ integration/
 ├─ db.ts              # DB 連線設定
-└─ server.ts          # Bun 啟動程式入口
+└─ index.ts           # Bun 啟動程式入口
 ```
 
 ---
@@ -46,59 +46,33 @@ tests 包含單元測試（unit）與整合測試（integration）。
 ## Docker 建置與執行
 
 ### 1️⃣ 建立 Dockerfile
+docker build -t my-bun-app .  
 
-# 使用官方 Bun 映像
-FROM jarredsumner/bun:latest
-
-WORKDIR /app
-
-# 複製專案與安裝依賴
-COPY . .
-RUN bun install
-
-# 啟動服務
-CMD ["bun", "run", "start"]
-
-
-### 2️⃣ 建立 docker-compose.yml（PostgreSQL + 服務）
-
-version: '3.9'
-services:
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: booking
-    ports:
-      - "5432:5432"
-  app:
-    build: .
-    depends_on:
-      - db
-    ports:
-      - "3000:3000"
-    environment:
-      DATABASE_URL: "postgres://postgres:postgres@db:5432/booking"
+### 2️⃣ 運行 docker 服務
+docker run -p 3000:3000 my-bun-app
 
 
 ### 3️⃣ 啟動服務
-
-docker-compose up --build
-
-
 Bun 服務會在 http://localhost:3000 開放。
 
-PostgreSQL 預設帳號密碼為 postgres/postgres，資料庫名稱 booking。
+資料庫使用 PostgreSQL 並用線上服務 Neon 
 
 使用方式
+
+reset資料
+curl http://localhost:3000/resetAndSeed
+
+
 1. 檢查服務健康
 curl http://localhost:3000/health
 
 2. 查詢可用時段
-curl "http://localhost:3000/available?date=2025-12-16"
+curl "http://localhost:3000/slots?date=2025-12-16"
 
-3. 預約時段
+3. 查詢使用者
+curl "http://localhost:3000/users"
+
+4. 利用 使用者ID 預約時段
 curl -X POST "http://localhost:3000/bookings" \
 -H "Content-Type: application/json" \
 -d '{
@@ -107,9 +81,18 @@ curl -X POST "http://localhost:3000/bookings" \
   "time": "10:00"
 }'
 
-測試
-bun test
 
+windos使用
+curl -X POST http://localhost:3000/bookings ^
+-H "Content-Type: application/json" ^
+-d "{\"user_id\": \"f03cf87c-dd99-4cde-968c-ab43d6b53b9b\", \"date\": \"2025-12-16\", \"time\": \"10:00\"}" 
+
+
+
+### 測試
+```bash
+bun test
+```
 
 單元測試在 tests/unit/
 
