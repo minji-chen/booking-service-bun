@@ -64,27 +64,19 @@ To test:
 bun test
 ```
 
+## 服務說明
 
-
-## Docker 建置與執行
-
-### 1️⃣ 建立 Dockerfile
-docker build -t my-bun-app .  
-
-### 2️⃣ 運行 docker 服務
-docker run -p 3000:3000 my-bun-app
-
-
-### 3️⃣ 啟動服務
 Bun 服務會在 http://localhost:3000 開放。
 
 資料庫使用 PostgreSQL 並用線上服務 Neon 
 
-```text
+
 使用方式
 
+```bash
 1. reset資料
 curl http://localhost:3000/resetAndSeed
+
 
 
 2. 檢查服務健康
@@ -112,6 +104,20 @@ curl -X POST http://localhost:3000/bookings ^
 -d "{\"user_id\": \"f03cf87c-dd99-4cde-968c-ab43d6b53b9b\", \"date\": \"2025-12-16\", \"time\": \"10:00\"}" 
 
 ```
+
+
+
+
+
+
+## Docker 建置與執行
+
+### 1️⃣ 建立 Dockerfile
+docker build -t my-bun-app .  
+
+### 2️⃣ 運行 docker 服務
+docker run -p 3000:3000 my-bun-app
+
 
 ## 補充
 
