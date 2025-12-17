@@ -70,6 +70,8 @@ Bun 服務會在 http://localhost:3000 開放。
 
 資料庫使用 PostgreSQL 並用線上服務 Neon 
 
+自動建立/重置測試資料時 會從目前時間往後增加10天 
+過往資料會被清楚 須注意
 
 使用方式
 
@@ -81,7 +83,7 @@ curl "http://localhost:3000/resetAndSeed"
 curl "http://localhost:3000/health"
 
 3. 查詢可用時段
-curl "http://localhost:3000/slots?date=2025-12-16"
+curl "http://localhost:3000/slots?date=2025-12-18"
 
 4. 查詢使用者
 curl "http://localhost:3000/users"
@@ -93,7 +95,7 @@ curl -X POST "http://localhost:3000/bookings" \
 -H "Content-Type: application/json" \
 -d '{
   "user_id": "YOUR_USER_ID",
-  "date": "2025-12-16",
+  "date": "2025-12-18",
   "time": "10:00"
 }'
 
@@ -101,7 +103,7 @@ curl -X POST "http://localhost:3000/bookings" \
 windows
 curl -X POST http://localhost:3000/bookings ^
 -H "Content-Type: application/json" ^
--d "{\"user_id\": \"f03cf87c-dd99-4cde-968c-ab43d6b53b9b\", \"date\": \"2025-12-16\", \"time\": \"10:00\"}" 
+-d "{\"user_id\": \"f03cf87c-dd99-4cde-968c-ab43d6b53b9b\", \"date\": \"2025-12-18\", \"time\": \"10:00\"}" 
 
 ```
 
@@ -148,7 +150,7 @@ bun run drizzle-kit push
 
 每個時段的 capacity 由資料庫定義（預設 10 人）。
 
-使用 transaction 確保不超賣。
+使用 transaction + lock 確保不超賣。
 
 
 This project was created using `bun init` in bun v1.3.4. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
